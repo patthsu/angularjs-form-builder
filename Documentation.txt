@@ -1,0 +1,24 @@
+Requirements:
+1. Take the json from the custom form and prepare to post it to the server.
+	 We can grab the data using {{form}} and send the data to the server.
+2. Receive json from the server and rebuild the custom form.
+	 We can pick prebuild forms by adding options to our static-data file. We can also alter the code to display data from JSON. The location to alter the code will vary dependign on where we want to display the form.
+3. Prepare to style the form builder to our own specs.
+	Depending on what we want, we can edit the views files to change how our app looks. We can also add new fields by adding templates for the fields.
+
+
+Notes:
+1. We can grab the data of our desired form by using:
+{{ form }}.
+We can probably use this to transmit data.
+
+2. In \angularjs-form-builder\app\static-data, we created two sample forms. To force a certain form to display, there is a function that takes id as input in the following file:
+\app\scripts\services\form-service
+Forcing the id forces what form is displayed in sample forms. 
+This function is called in
+
+3. In \app\view\create.html we have:
+div class="span4"><input type="text" name="form-id" ng-disabled="true" ng-model="form.form_id"></div>
+Just change ng-disabled to false and we can change the form id in create form
+
+4. In \app\scripts\controllers\create.js we define formID on the "Create a form" page. The controller is called in \app\scripts\app.js.
