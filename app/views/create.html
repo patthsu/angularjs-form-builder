@@ -9,7 +9,7 @@
             <h3>Form Properties</h3>
             <div class="row">
                 <div class="span2">Form ID: </div>
-                <div class="span4"><input type="text" name="form-id" ng-disabled="false" ng-model="form.form_id"></div>
+                <div class="span4"><input type="text" name="form-id" ng-disabled="true" ng-model="form.form_id"></div>
             </div>
             <div class="row">
                 <div class="span2">Form Name:</div>
@@ -108,12 +108,14 @@
 		<div class="text-center">
 			<a class="btn btn-small btn-primary" ng-show="!showJson" ng-click="showJson = true">Show form json object</a>
 			<a class="btn btn-small btn-inverse" ng-show="showJson" ng-click="showJson = false">Hide form json object</a><br><br>
+            <a class="btn btn-small btn-inverse" ng-click="sendToServer()">Create Form</a><br><br>
 		</div>
 
-        <div ng-show="showJson">
+        <div ng-show="showJson" >
             <h4>Form object content:</h4>
             <pre>{{ form | json }}</pre>
         </div>
+
     </div>
 
     <div class="form-fields-preview" ng-show="previewMode">

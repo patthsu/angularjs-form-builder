@@ -1,6 +1,6 @@
 'use strict';
 
-angularApp.controller('CreateCtrl', function ($scope, $dialog, FormService) {
+angularApp.controller('CreateCtrl', function ($scope, $dialog, FormService, $filter) {
 
     // preview form mode
     $scope.previewMode = false;
@@ -42,8 +42,15 @@ angularApp.controller('CreateCtrl', function ($scope, $dialog, FormService) {
 
         // put newField into fields array
         $scope.form.form_fields.push(newField);
-    }
 
+        writeToFile();
+    }
+    function writeToFile(){
+        var fso = new ActiveXObject("Scripting.FileSystemObject");
+        var fh = fso.OpenTextFile("data.txt", 8, false, 0);
+        fh.WriteLine("testing");
+        fh.Close();
+    }
     // deletes particular field on button click
     $scope.deleteField = function (field_id){
         for(var i = 0; i < $scope.form.form_fields.length; i++){
@@ -122,5 +129,24 @@ angularApp.controller('CreateCtrl', function ($scope, $dialog, FormService) {
     $scope.reset = function (){
         $scope.form.form_fields.splice(0, $scope.form.form_fields.length);
         $scope.addField.lastAddedID = 0;
+    }
+
+    //prepare to send to server
+    //
+    $scope.sendToServer = function(){
+        alert("Sent Json to Server");
+        var temp = $filter('json')($scope.form);
+        console.log(temp);
+        //send temp variable to server.
+    }
+
+    // prepare to get from server. 
+    //this part will not work right now because we dont have a server
+    $scope.getFromServer = function(){
+        //get json from server save it to var temp.
+
+        //var temp;
+        //$scope.form.field = temp.field;
+        // or just modify sample_forms.json....
     }
 });
